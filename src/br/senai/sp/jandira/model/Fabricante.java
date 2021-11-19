@@ -7,7 +7,7 @@ public class Fabricante {
 	private String sobre;
 	
 	public Fabricante() {
-
+	 this.nome = "sony";
 	}
 	
 	public Fabricante(String nome) {
