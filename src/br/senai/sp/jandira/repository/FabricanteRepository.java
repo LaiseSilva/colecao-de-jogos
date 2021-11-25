@@ -7,15 +7,19 @@ public class FabricanteRepository {
 	private Fabricante[] colecaoFabricante;
 
 	public FabricanteRepository() {
-		/*Fabricante rockstar = new Fabricante();
+		Fabricante rockstar = new Fabricante();
 		rockstar.setNome("Rockstar");
 
 		Fabricante sony = new Fabricante();
 		sony.setNome("Sony");
 
+		Fabricante activision = new Fabricante();
+		activision.setNome("Activision");
+
 		colecaoFabricante = new Fabricante[3];
+		colecaoFabricante[0] = rockstar;
 		colecaoFabricante[1] = sony;
-		colecaoFabricante[0] = rockstar;*/
+		colecaoFabricante[2] = activision;
 
 	}
 

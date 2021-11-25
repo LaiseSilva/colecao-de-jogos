@@ -35,16 +35,6 @@ public class FrameJogo extends JFrame {
 
 	public FrameJogo() {
 
-		Fabricante rockstar = new Fabricante();
-		rockstar.setNome("Rockstar");
-
-		Fabricante sony = new Fabricante();
-		sony.setNome("Sony");
-
-		FabricanteRepository teste = new FabricanteRepository(3);
-		teste.gravar(sony, 0);
-		teste.gravar(rockstar, 1);
-
 		setTitle("Cole\u00E7\u00E3o de Jogos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 652, 417);
@@ -66,9 +56,15 @@ public class FrameJogo extends JFrame {
 		lblFabricante.setBounds(10, 66, 77, 14);
 		contentPane.add(lblFabricante);
 
-		DefaultComboBoxModel<Fabricante> teste1 = new DefaultComboBoxModel<Fabricante>();
-		JComboBox comboBoxFabricante = new JComboBox(teste1);
+		DefaultComboBoxModel<String> listaFabricantes = new DefaultComboBoxModel<String>();
+		JComboBox comboBoxFabricante = new JComboBox(listaFabricantes);
 		comboBoxFabricante.setBounds(98, 62, 166, 22);
+
+		FabricanteRepository fabricantes = new FabricanteRepository();
+
+		for (Fabricante fabricante : fabricantes.getListaDeFabricantes()) {
+			listaFabricantes.addElement(fabricante.getNome());
+		}
 		contentPane.add(comboBoxFabricante);
 
 		JButton btnNovoFabricante = new JButton("Outro");
@@ -159,11 +155,27 @@ public class FrameJogo extends JFrame {
 		btnVoltarJogo.setBounds(387, 310, 89, 31);
 		contentPane.add(btnVoltarJogo);
 
+		btnVoltarJogo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listJogos.setSelectedIndex(listJogos.getSelectedIndex() - 1);
+			}
+		});
+
 		JButton btnAvancarJogo = new JButton(">");
 		btnAvancarJogo.setForeground(Color.WHITE);
 		btnAvancarJogo.setBackground(Color.BLUE);
 		btnAvancarJogo.setBounds(512, 310, 89, 31);
 		contentPane.add(btnAvancarJogo);
+
+		btnAvancarJogo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listJogos.setSelectedIndex(listJogos.getSelectedIndex() + 1);
+			}
+		});
 
 	}
 
