@@ -3,6 +3,8 @@ package br.senai.sp.jandira.ui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import br.senai.sp.jandira.model.Consoles;
 import br.senai.sp.jandira.model.Fabricante;
@@ -22,9 +24,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JEditorPane;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FrameJogo extends JFrame {
 
@@ -134,9 +140,12 @@ public class FrameJogo extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				
 				Jogo jogo = new Jogo();
 				jogo.setTitulo(txtTitulo.getText());
-				// jogo.setFabricante();
+				jogo.setFabricante(fabricantes.getNomeFabricante(comboBoxFabricante.getSelectedIndex()));
 				jogo.setConsole(determinarConsole(comboBoxConsole.getSelectedIndex()));
 				jogo.setPreco(txtPreco.getText());
 				jogo.setZerado(chckbxZerado.isSelected());
@@ -146,6 +155,26 @@ public class FrameJogo extends JFrame {
 				posicao++;
 
 				modelJogos.addElement(jogo.getTitulo());
+
+				if (posicao == colecao.getTamanho()) {
+					btnSalvarJogo.setEnabled(false);
+					JOptionPane.showMessageDialog(null, "Sua coleção já está cheia!!");
+				}
+			}
+		});
+
+		listJogos.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				Jogo jogo = colecao.getJogo(listJogos.getSelectedIndex());
+				txtTitulo.setText(jogo.getTitulo());
+				comboBoxFabricante.setSelectedIndex(0);
+				comboBoxConsole.setSelectedIndex(jogo.getConsole().ordinal());
+				txtPreco.setText(jogo.getPreco());
+				chckbxZerado.setSelected(jogo.isZerado());
+				editorPaneObeservacoes.setText(jogo.getObservacoes());
+
 			}
 		});
 

@@ -41,7 +41,8 @@ public class Jogo {
 		this.zerado = zerado;
 	}
 	
-	public double getPreco() {
+	public String getPreco() {
+		String preco = String.valueOf(this.preco);
 		return preco;
 	}
 	

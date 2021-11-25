@@ -38,5 +38,9 @@ public class FabricanteRepository {
 	public Fabricante[] getListaDeFabricantes() {
 		return colecaoFabricante;
 	}
+	
+	public Integer getTamanhoColecaoFabricante() {
+		return colecaoFabricante.length;
+	}
 
 }
