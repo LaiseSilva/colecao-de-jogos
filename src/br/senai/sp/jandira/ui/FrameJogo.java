@@ -169,7 +169,7 @@ public class FrameJogo extends JFrame {
 			public void valueChanged(ListSelectionEvent e) {
 				Jogo jogo = colecao.getJogo(listJogos.getSelectedIndex());
 				txtTitulo.setText(jogo.getTitulo());
-				comboBoxFabricante.setSelectedIndex(0);
+				comboBoxFabricante.setSelectedIndex(fabricantes.getIndexFabricante(jogo.getFabricante()));
 				comboBoxConsole.setSelectedIndex(jogo.getConsole().ordinal());
 				txtPreco.setText(jogo.getPreco());
 				chckbxZerado.setSelected(jogo.isZerado());
